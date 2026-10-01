@@ -4,16 +4,12 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 export default defineConfig({
-  // Single env file lives in server/.env.local
+  // Env lives in this app root (client/.env.local). On Vercel, set VITE_* in the dashboard.
   vite: {
-    envDir: path.resolve(__dirname, "../server"),
+    envDir: ".",
   },
   nitro: {
     preset: "vercel",
